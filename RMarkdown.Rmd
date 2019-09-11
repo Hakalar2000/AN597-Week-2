@@ -8,23 +8,159 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+#Challenge 1
+line<-"Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+#This places the quote into R, but this quote is a singular attribute and not a string of separate words
+library(stringr)
+#Uploaded the stringr from my library so I can use it
+line2<-str_split(line, boundary("word"))
+#line is the subject that I want to split, boundary represents how I want to split up the sentence. In this case I want to split the sentenced based on words.
+#I named this line 2
+mode(line2)
+#this tells me that I have a list...
+length(line2)
+#hmmm I don't really want this. The elements of the line 2 are not separated
+line2
+line3<-list(line2)
+line3
+#somehow we got rid of punctuation so yay?
+length(line3)
+#still has a length of 1?
+str(line3)
+#well now I now there are 22 characters/words
+line3[1]
+#lets go back to using line2 shall we?
+line2
+line4<-c(line2)
+line4
+#that didn't do anything...We need a character vector
+line5<-strsplit(line, " ")[[1]]
+#DID THIS JUsT WORKKKKKKKK?????
+line5
+#Yes this turned my string into a vector made of individual words.
+#Ok, now I need to turn this vector into a matrix, or maybe an array?
+line6<-matrix(line5, nrow = 7, ncol = 3)
+#awesome. Now we have a matrix. We are missing one word but tbh I don't need it cause it would have appear in column 1 and I want column 3 values
+line6[1:7,3]
+#So now we have extracted every third word! WOHOOO
+#FINAL CODE
+line<-"Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+library(stringr)
+line5<-strsplit(line, " ")[[1]]
+line5
+line6<-matrix(line5, nrow = 7, ncol = 3)
+line6[1:7,3]
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+#Challenge 2
+m <- matrix(data=1:80,nrow=8,ncol=10,byrow=FALSE)
+m
+#So this is what we were given to start with
+x1<-m[1:8,2:3]
+x1
+x2<-m[1:8,6]
+x2
+x3<-cbind(x1, x2)
+#Now that we have created two matrices with the values we want we combined them.
+#Next we need to extract rows 6 to 8
+x4<-m[6:8,]
+x4
+#awesome! that was easy. 
+#Lastly we need elments from [2,2] to [6, 9]
+x5<-m[2:6, 2:9]
+x5
+#wonderful, am done. 
+#FINAL CODE
+m <- matrix(data=1:80,nrow=8,ncol=10,byrow=FALSE)
+m
+x1<-m[1:8,2:3]
+x1
+x2<-m[1:8,6]
+x2
+x3<-cbind(x1, x2)
+x3
+x4<-m[6:8,]
+x4
+x5<-m[2:6, 2:9]
+x5
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#Challenge 3
+a<-array(400:1, dim = c(5,5,4,4))
+a
+#Now we have our array with the first part specifying our numeric variables that will occur within the array and the dim expressing the four dimensions of the array
+a[1, 1, 1, 2]
+#This matrix specifies 300, a point found that the specific array coordinates listed.
+a[2, 3, 2, ]
+#This matrix specifies the first three coordinates, but say that any value that is found within these
+#coordinates is selected. So anything in the fourth array perameters is selected. The results yield
+#364, 264, 164, and 64. Essentially every 100 attributes. 
+a[1:5, 1:5, 3, 3]
+#This matrix is set up so that a subset of matrix data is taken from the array. 
+#We have matrix 3,3 with rows 1-5 and columns 1-5. 
 
-```{r cars}
-summary(cars)
-```
+#Challenge 4
+Platyrrhini<-list("Cebidae, Atelidae, Pitheciidae")
+Catarrhini<-list("Cercopithecidae, Hylobatidae, Hominidae")
+Anthropoidea<-list(Catarrhini, Platyrrhini)
+Tarsioidea<-list("Tarsiidae")
+Haplorhini<-list(Anthropoidea, Tarsioidea)
+Lorisoidea<-list("Lorisidea, Galagidae")
+Lemuroidea<-list("Cheirogaleidae, Lepilemuridae, Indriidae, Lemuridae, Daubentoniidae")
+Strepsirhini<-list(Lorisoidea, Lemuroidea)
+primates<-list(Haplorhini, Strepsirhini)
+primates
+#this was my first attempt at a list. It created the list but will not desplay all the names only the levels. 
+primates<- list(names(Haplorhini, Strepsirhini)
+#going backwards did not work
+Platyrrhini<-c("Cebidae, Atelidae, Pitheciidae")
+Platyrrhini
+#this level is now listed out
+Catarrhini<-c("Cercopithecidae, Hylobatidae, Hominidae")
+Catarrhini
+#this level is now listed out 
+#ok this is is gonna be a loooonnnggg line of code.                 
+Haplorhini=c(Anthropoidea=c(Catarrhini=c(Catarrhini), Platyrrhini=c(Platyrrhini)), Tarsioidea = c("Tarsiidae"))
+Haplorhini
+Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea))
+Primates = c(Haplorhini=c(Anthropoidea=c(Catarrhini=c(Catarrhini), Platyrrhini=c(Platyrrhini)), Tarsioidea = c("Tarsiidae")), Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea)))
+Primates
+#so this kinda worked? Not sure how to format so that the list appears nice and organized by levels. 
+#FINAL CODE
+Platyrrhini<-list("Cebidae, Atelidae, Pitheciidae")
+Catarrhini<-list("Cercopithecidae, Hylobatidae, Hominidae")
+Tarsioidea<-list("Tarsiidae")
+Lorisoidea<-list("Lorisidea, Galagidae")
+Lemuroidea<-list("Cheirogaleidae, Lepilemuridae, Indriidae, Lemuridae, Daubentoniidae")
+Haplorhini=c(Anthropoidea=c(Catarrhini=c(Catarrhini), Platyrrhini=c(Platyrrhini)), Tarsioidea = c("Tarsiidae"))
+Haplorhini
+Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea))
+Primates = c(Haplorhini=c(Anthropoidea=c(Catarrhini=c(Catarrhini), Platyrrhini=c(Platyrrhini)), Tarsioidea = c("Tarsiidae")), Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea)))
+Primates
 
-## Including Plots
+#CHallenge 5
+matrix<-matrix(data=c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
+matrix
+#our matrix is create and filled by row. 
+frame<-as.data.frame(as.matrix(matrix))
+frame
+#our matrix is now a data frame
+V2<-data.frame(V1 = as.numeric(1:5), V2 = as.logical(1:5), V3 = as.numeric(1:5), stringsAsFactors = FALSE)
+V2
+str(V2)
+#V2 has now been turned into a logical type. I had to specify the type of each variable. 
+V3<-data.frame(V1 = as.numeric(1:5), V2 = as.numeric(1:5), V3 = as.factor(1:5), stringsAsFactors = FALSE)
+V3
+str(V3)
+#FINAL CODE
+matrix<-matrix(data=c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
+matrix
+frame<-as.data.frame(as.matrix(matrix))
+frame
+V2<-data.frame(V1 = as.numeric(1:5), V2 = as.logical(1:5), V3 = as.numeric(1:5), stringsAsFactors = FALSE)
+V2
+str(V2)
+V3<-data.frame(V1 = as.numeric(1:5), V2 = as.numeric(1:5), V3 = as.factor(1:5), stringsAsFactors = FALSE)
+V3
+str(V3)
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
