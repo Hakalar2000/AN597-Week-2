@@ -8,9 +8,88 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+Final code with peer edits (see peer edits and original code below, ps: it's a mess cause I didn't understand Rmarkdown)
+
 Challenge 1
 ```{r}
 line<-"Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+library(stringr)
+line5<-strsplit(line, " ")[[1]]
+line5
+line6<-matrix(line5, nrow = 7, ncol = 3, byrow = TRUE)
+line6
+line6[1:7,3]
+```
+Challenge 2
+```{r}
+a<-array(400:1, dim = c(5,5,4,4))
+a
+a[1, 1, 1, 2]
+a[2, 3, 2, ]
+a[1:5, 1:5, 3, 3]
+```
+Challenge 3
+```{r}
+m <- matrix(data=1:80,nrow=8,ncol=10,byrow=FALSE)
+m
+x1<-m[1:8,2:3]
+x1
+x2<-m[1:8,6]
+x2
+x3<-cbind(x1, x2)
+x3
+x4<-m[6:8,]
+x4
+x5<-m[2:6, 2:9]
+x5
+```
+Challenge 4
+```{r}
+Platyrrhini<-list("Cebidae, Atelidae, Pitheciidae")
+Catarrhini<-list("Cercopithecidae, Hylobatidae, Hominidae")
+Tarsioidea<-list("Tarsiidae")
+Lorisoidea<-list("Lorisidea, Galagidae")
+Lemuroidea<-list("Cheirogaleidae, Lepilemuridae, Indriidae, Lemuridae, Daubentoniidae")
+Haplorhini=c(Anthropoidea=c(Catarrhini=c(Catarrhini), Platyrrhini=c(Platyrrhini)), Tarsioidea = c("Tarsiidae"))
+Haplorhini
+Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea))
+Primates = c(Haplorhini=c(Anthropoidea=c(Catarrhini=c(Catarrhini), Platyrrhini=c(Platyrrhini)), Tarsioidea = c("Tarsiidae")), Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea)))
+Primates
+```
+Challenge 5
+```{r}
+matrix<-matrix(data=c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
+matrix
+frame<-data.frame(matrix)
+frame
+str(frame)
+dim(frame)
+colnames(frame)
+sapply(frame, class)
+frame[["X1"]]
+frame2<-data.frame(as.numeric(frame$X1), as.logical(frame$X2), as.factor(frame$X3))
+frame2
+str(frame2)
+#this code has a bunch of stuff where I am just looking at what my data frame consists of and the variable types so I could make sure things were going alright. My first code didn't maintain the correct numeric values. 
+```
+
+
+
+
+<<<<<<< HEAD
+Challenge 1
+```{r}
+line<-"Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+=======
+
+#Challenge 1
+
+####All your code should be in chunks,like the one a made below. Click on the insert button above to create a chunk and them paste the code in it. See my Rmarkdown if you want an example.######
+```{r}
+line<-"Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+```
+
+>>>>>>> 7d86a141553940984e122a7e114ffd93f10fe721
 #This places the quote into R, but this quote is a singular attribute and not a string of separate words
 library(stringr)
 #Uploaded the stringr from my library so I can use it
@@ -49,6 +128,7 @@ line<-"Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of l
 library(stringr)
 line5<-strsplit(line, " ")[[1]]
 line5
+<<<<<<< HEAD
 line6<-matrix(line5, nrow = 7, ncol = 3, byrow = TRUE)
 line6
 line6[1:7,3]
@@ -56,6 +136,13 @@ line6[1:7,3]
 ```
 Challenge 2
 ```{r}
+=======
+line6<-matrix(line5, nrow = 7, ncol = 3)
+line6[1:7,3]
+######Im sorry but you are getting the wrong words here. The problem is that you are spliting your data into 7 rows and 3 columns so when you do line6[1:7,3] you are actually getting the 3 word in each row. Try to put every word in its own row and get every 3rd row######
+
+#Challenge 2
+>>>>>>> 7d86a141553940984e122a7e114ffd93f10fe721
 m <- matrix(data=1:80,nrow=8,ncol=10,byrow=FALSE)
 m
 #So this is what we were given to start with
@@ -86,9 +173,15 @@ x4<-m[6:8,]
 x4
 x5<-m[2:6, 2:9]
 x5
+<<<<<<< HEAD
 ```
 Challenge 3
 ```{r}
+=======
+######this is more or less like mine. Looks good!########
+
+#Challenge 3
+>>>>>>> 7d86a141553940984e122a7e114ffd93f10fe721
 a<-array(400:1, dim = c(5,5,4,4))
 a
 #Now we have our array with the first part specifying our numeric variables that will occur within the array and the dim expressing the four dimensions of the array
@@ -100,6 +193,7 @@ a[2, 3, 2, ]
 #364, 264, 164, and 64. Essentially every 100 attributes. 
 a[1:5, 1:5, 3, 3]
 #This matrix is set up so that a subset of matrix data is taken from the array. 
+<<<<<<< HEAD
 #We have matrix 3,3 with rows 1-5 and columns 1-5.
 #FINAL CODE
 a<-array(400:1, dim = c(5,5,4,4))
@@ -110,6 +204,12 @@ a[1:5, 1:5, 3, 3]
 ```
 Challenge 4
 ```{r}
+=======
+#We have matrix 3,3 with rows 1-5 and columns 1-5. 
+#######Got the same thing!! Yay!########3
+
+#Challenge 4
+>>>>>>> 7d86a141553940984e122a7e114ffd93f10fe721
 Platyrrhini<-list("Cebidae, Atelidae, Pitheciidae")
 Catarrhini<-list("Cercopithecidae, Hylobatidae, Hominidae")
 Anthropoidea<-list(Catarrhini, Platyrrhini)
@@ -147,9 +247,15 @@ Haplorhini
 Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea))
 Primates = c(Haplorhini=c(Anthropoidea=c(Catarrhini=c(Catarrhini), Platyrrhini=c(Platyrrhini)), Tarsioidea = c("Tarsiidae")), Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea)))
 Primates
+<<<<<<< HEAD
 ```
 Challenge 5
 ```{r}
+=======
+######This is very clever. I couldn't quite figure out what he wanted but this is better than what I came up with.######
+
+#CHallenge 5
+>>>>>>> 7d86a141553940984e122a7e114ffd93f10fe721
 matrix<-matrix(data=c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
 matrix
 #our matrix is create and filled by row. 
@@ -166,6 +272,7 @@ str(V3)
 #FINAL CODE
 matrix<-matrix(data=c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
 matrix
+<<<<<<< HEAD
 frame<-data.frame(matrix)
 frame
 str(frame)
@@ -178,3 +285,15 @@ frame2
 str(frame2)
 #I fixed this code finally! I changed the data types but I also did this by putting them into a new data frame. Basically converting from one data frame to another with data.frame() function. One thing I am unclear about is why the column names changed or how to change them back to not so long names.  
 ```
+=======
+frame<-as.data.frame(as.matrix(matrix))
+frame
+V2<-data.frame(V1 = as.numeric(1:5), V2 = as.logical(1:5), V3 = as.numeric(1:5), stringsAsFactors = FALSE)
+V2
+str(V2)
+V3<-data.frame(V1 = as.numeric(1:5), V2 = as.numeric(1:5), V3 = as.factor(1:5), stringsAsFactors = FALSE)
+V3
+str(V3)
+
+#####Lots of issues with this one. You are good up to line 168 but then you got off track. The problem is that you replace the data in your table with new numbers by doing this V1 = as.numeric(1:5), V2 = as.numeric(1:5), V3 = as.factor(1:5). Now all your colums have the numbers 1-5 in ascending order. for a vector to be logical it must have only 1's and 0's in it so they can be interpreted as true or false. I could not figur out myself how to permanently coerce the columns but I was able to find a way to read column 2 as logical and column 3 as factors which are like levels.Hope you find this useful!#######
+>>>>>>> 7d86a141553940984e122a7e114ffd93f10fe721
