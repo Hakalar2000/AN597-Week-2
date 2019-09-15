@@ -8,7 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#Challenge 1
+Challenge 1
+```{r}
 line<-"Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
 #This places the quote into R, but this quote is a singular attribute and not a string of separate words
 library(stringr)
@@ -48,11 +49,13 @@ line<-"Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of l
 library(stringr)
 line5<-strsplit(line, " ")[[1]]
 line5
-line6<-matrix(line5, nrow = 7, ncol = 3)
+line6<-matrix(line5, nrow = 7, ncol = 3, byrow = TRUE)
+line6
 line6[1:7,3]
-
-
-#Challenge 2
+#Fix: I forgot to fill in the columns rowwise, but that was an easy fix. Also I know the error is saying I'm ommiting a word, but we don't care about that word since its not in the third column. 
+```
+Challenge 2
+```{r}
 m <- matrix(data=1:80,nrow=8,ncol=10,byrow=FALSE)
 m
 #So this is what we were given to start with
@@ -83,8 +86,9 @@ x4<-m[6:8,]
 x4
 x5<-m[2:6, 2:9]
 x5
-
-#Challenge 3
+```
+Challenge 3
+```{r}
 a<-array(400:1, dim = c(5,5,4,4))
 a
 #Now we have our array with the first part specifying our numeric variables that will occur within the array and the dim expressing the four dimensions of the array
@@ -96,9 +100,16 @@ a[2, 3, 2, ]
 #364, 264, 164, and 64. Essentially every 100 attributes. 
 a[1:5, 1:5, 3, 3]
 #This matrix is set up so that a subset of matrix data is taken from the array. 
-#We have matrix 3,3 with rows 1-5 and columns 1-5. 
-
-#Challenge 4
+#We have matrix 3,3 with rows 1-5 and columns 1-5.
+#FINAL CODE
+a<-array(400:1, dim = c(5,5,4,4))
+a
+a[1, 1, 1, 2]
+a[2, 3, 2, ]
+a[1:5, 1:5, 3, 3]
+```
+Challenge 4
+```{r}
 Platyrrhini<-list("Cebidae, Atelidae, Pitheciidae")
 Catarrhini<-list("Cercopithecidae, Hylobatidae, Hominidae")
 Anthropoidea<-list(Catarrhini, Platyrrhini)
@@ -136,8 +147,9 @@ Haplorhini
 Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea))
 Primates = c(Haplorhini=c(Anthropoidea=c(Catarrhini=c(Catarrhini), Platyrrhini=c(Platyrrhini)), Tarsioidea = c("Tarsiidae")), Strepsirhini=c(Lorisoidea=c(Lorisoidea), Lemuroidea=c(Lemuroidea)))
 Primates
-
-#CHallenge 5
+```
+Challenge 5
+```{r}
 matrix<-matrix(data=c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
 matrix
 #our matrix is create and filled by row. 
@@ -154,15 +166,15 @@ str(V3)
 #FINAL CODE
 matrix<-matrix(data=c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
 matrix
-frame<-as.data.frame(as.matrix(matrix))
+frame<-data.frame(matrix)
 frame
-V2<-data.frame(V1 = as.numeric(1:5), V2 = as.logical(1:5), V3 = as.numeric(1:5), stringsAsFactors = FALSE)
-V2
-str(V2)
-V3<-data.frame(V1 = as.numeric(1:5), V2 = as.numeric(1:5), V3 = as.factor(1:5), stringsAsFactors = FALSE)
-V3
-str(V3)
-
-#I am now trying to upload this thing to github. Am having trouble. 
-
-
+str(frame)
+dim(frame)
+colnames(frame)
+sapply(frame, class)
+frame[["X1"]]
+frame2<-data.frame(as.numeric(frame$X1), as.logical(frame$X2), as.factor(frame$X3))
+frame2
+str(frame2)
+#I fixed this code finally! I changed the data types but I also did this by putting them into a new data frame. Basically converting from one data frame to another with data.frame() function. One thing I am unclear about is why the column names changed or how to change them back to not so long names.  
+```
